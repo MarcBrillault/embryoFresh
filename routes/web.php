@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('adminImage/{object}/{size}/{id}', 'ImageController@adminImage')
+    ->where('size', 'thumbnail|preview')
+    ->name('admin_image');
