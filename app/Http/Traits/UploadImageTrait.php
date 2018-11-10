@@ -7,7 +7,7 @@ trait UploadImageTrait
     public static function getImageDir(): string
     {
         if (defined('self::IMAGE_DIR')) {
-            return self::IMAGE_DIR;
+            return rtrim(self::IMAGE_DIR, '/') . '/';
         }
 
         return '/';
@@ -62,8 +62,13 @@ trait UploadImageTrait
         ));
     }
 
+    public function getAdminImageAttribute()
+    {
+        return $this->getAdminImage('thumbnail');
+    }
+
     /**
-     * Returns the thumbnail image to be displayed on the amdin interfaces
+     * Returns the thumbnail image to be displayed on the admin interfaces
      *
      * @return string
      */

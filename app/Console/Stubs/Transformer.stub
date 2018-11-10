@@ -1,0 +1,18 @@
+<?php
+
+namespace DummyNamespace;
+
+use League\Fractal\TransformerAbstract;
+
+class DummyClass extends TransformerAbstract
+{
+    /**
+     * @param object $object
+     * @return array
+     */
+    public function transform(object $object):array
+    {
+        return [
+        ];
+    }
+}
