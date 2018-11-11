@@ -110,3 +110,7 @@ a simple way to generate them for objects or even collections.
             ```php
                var_dump(self::getCollectionAsArrayWithoutData($myObjectsCollection, new \App\Http\Transformers\MyObjectTransformer()));
             ```
+        3. The default behaviour of [Fractal](https://fractal.thephpleague.com/) adds a `data` key in order to
+        potentially add metadata to the array. The `getCollectionAsArray` method returns the objects contents in the
+        `data` key in the array.
+        To return only the results, you should use the `getCollectionAsArrayWithoutData` method.
