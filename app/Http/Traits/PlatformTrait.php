@@ -10,4 +10,9 @@ trait PlatformTrait
     {
         return App::environment(['local', 'staging']);
     }
+
+    public function getLocale(): string
+    {
+        return (string) \Config::get('app.locale');
+    }
 }
