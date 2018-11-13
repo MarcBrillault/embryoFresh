@@ -61,6 +61,7 @@ trait TextTrait
     ];
 
     private $additionalFixers = [
+        'App\\Http\\Fixers\\MelkaFixer',
     ];
 
     private $localeEquivalents = [
@@ -93,7 +94,7 @@ trait TextTrait
     {
         if (strIsJson($text)) {
             $json   = json_decode($text, true);
-            $locale = $this->getLocale();
+            $locale = $this->getPlatformLocale();
             if (array_key_exists($locale, $json)) {
                 $text = $json[$locale];
             } else {
@@ -121,7 +122,7 @@ trait TextTrait
     private function getFixerLocale(string $locale = ''): string
     {
         if (!$locale || array_key_exists($locale, $this->localeEquivalents)) {
-            $locale = $this->getLocale();
+            $locale = $this->getPlatformLocale();
         }
 
         if (array_key_exists($locale, $this->localeEquivalents)) {
