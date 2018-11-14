@@ -12,9 +12,9 @@ trait ImageTrait
         return \Image::cache(function (ImageCache $image) use ($path, $width, $height): ImageCache {
             try {
                 $fullPath = \Storage::get($path);
-                $image    = $image->make($fullPath);
+                $image->make($fullPath);
             } catch (\Exception $e) {
-                $image = $this->getDefaultImage();
+                $image->make($this->getDefaultImage());
             }
 
             if ($width && $height) {
@@ -31,10 +31,12 @@ trait ImageTrait
         }, 60 * 24, true)->response();
     }
 
+    /**
+     * @return string
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
     private function getDefaultImage()
     {
-        $image = \Image::canvas(800, 800, '#F00');
-
-        return $image;
+        return \Storage::get('defaultImage.png');
     }
 }
