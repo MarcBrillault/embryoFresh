@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('robots.txt', 'RobotsController@index');
+
 Route::get('adminImage/{object}/{size}/{id}', 'ImageController@adminImage')
     ->where('size', 'thumbnail|preview')
     ->name('admin_image');
