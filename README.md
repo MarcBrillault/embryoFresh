@@ -24,19 +24,14 @@ A tailored version of Laravel + Backpack intended to be a starter for projects.
     php artisan make:migration:schema create_tags_table --model=0 --schema="name:string:unique"
     php artisan migrate
     ```
-2. Create the model: (Use the singular version)
+2. Create the model, the route and the sidebar item (Use the singular for the model's name)
     ```
-    php artisan backpack:crud tag
+    php artisan make:crud modelName
     ```
-3. Create the route: 
-    ```
-    php artisan backpack:base:add-custom-route "CRUD::resource('tag', 'TagCrudController');"
-    ```
-4. Create the sidebar item: 
-    ```
-    php artisan backpack:base:add-sidebar-content "<li><a href='{{ backpack_url('tag') }}'><i class='fa fa-tag'></i> <span>Tags</span></a></li>"
-    ```
-    
+3. Edit the sidebar to update the icon and the title, if needed
+
+   (The file is located here: `resources/views/vendor/backpack/base/inc/sidebar_content.blade.php`)
+
 ### Managing images on admin panel
 
 1. Into the model file:
