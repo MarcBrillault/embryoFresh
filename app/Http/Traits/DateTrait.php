@@ -8,10 +8,10 @@ trait DateTrait
 {
     use PlatformTrait;
 
-    public function formatDate(string $date, string $format = '', string $locale = ''): string
+    public function formatDate(string $date, string $format = '', bool $short = false, string $locale = ''): string
     {
         $locale = $locale ?: $this->getPlatformLocale();
-        $format = $format ?: $this->getDateFormatFromLocale();
+        $format = $format ?: $this->getDateFormatFromLocale('', $short);
         Date::setLocale($locale);
 
         $date = new Date($date);
@@ -19,14 +19,14 @@ trait DateTrait
         return $date->format($format);
     }
 
-    public function getDateFormatFromLocale(string $locale = '')
+    public function getDateFormatFromLocale(string $locale = '', bool $short = false)
     {
         $locale = $locale ?: $this->getPlatformLocale();
         switch ($locale) {
             case 'en':
-                return 'l F jS Y';
+                return $short ? 'F jS Y' : 'l F jS Y';
             default:
-                return 'l j F Y';
+                return $short ? 'j F Y' : 'l j F Y';
         }
     }
 }
