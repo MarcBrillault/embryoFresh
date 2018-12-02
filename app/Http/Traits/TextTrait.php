@@ -61,7 +61,6 @@ trait TextTrait
     ];
 
     private $additionalFixers = [
-        'App\\Http\\Fixers\\MelkaFixer',
     ];
 
     private $localeEquivalents = [
@@ -74,7 +73,7 @@ trait TextTrait
      * @param string $locale
      * @return string
      */
-    private function displaytext(string $text, string $locale = ''): string
+    private function displayText(string $text, string $locale = ''): string
     {
         $text = $this->extractCorrectLanguageFromJson($text);
 
