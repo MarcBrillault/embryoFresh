@@ -1,3 +1,5 @@
 *
 !public/
+!robots/
 !.gitignore
+!defaultImage.png

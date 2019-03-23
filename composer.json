@@ -18,10 +18,12 @@
     "fideloper/proxy": "^4.0",
     "guzzlehttp/guzzle": "^6.3",
     "intervention/image": "^2.4",
+    "intervention/imagecache": "^2.3",
     "jolicode/jolitypo": "^1.0",
     "laravel/framework": "5.7.*",
     "laravel/tinker": "^1.0",
     "laravelrus/localized-carbon": "^2.3",
+    "league/fractal": "^0.17.0",
     "phpmailer/phpmailer": "^6.0"
   },
   "require-dev": {

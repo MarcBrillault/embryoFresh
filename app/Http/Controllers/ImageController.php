@@ -40,7 +40,7 @@ class ImageController extends Controller
     {
         $pathAttribute = $object::getAdminPathAttribute();
 
-        return $object->$pathAttribute;
+        return (string) $object->$pathAttribute;
     }
 
     private function getFullImagePath(Model $object): string

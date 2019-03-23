@@ -3,37 +3,40 @@
 namespace App\Http\Traits;
 
 use Intervention\Image\Constraint;
+use Intervention\Image\ImageCache;
 
 trait ImageTrait
 {
     public function image(string $path, int $width = null, int $height = null)
     {
-        try {
-            $fullPath = \Storage::get($path);
-            $image    = \Image::make($fullPath);
-        } catch (\Exception $e) {
-            $image = $this->getDefaultImage();
-        }
+        return \Image::cache(function (ImageCache $image) use ($path, $width, $height): ImageCache {
+            try {
+                $fullPath = \Storage::get($path);
+                $image->make($fullPath);
+            } catch (\Exception $e) {
+                $image->make($this->getDefaultImage());
+            }
 
-        if ($width && $height) {
-            return $image
-                ->fit($width, $height, function (Constraint $constraint) {
-                    $constraint->aspectRatio();
-                })
-                ->response();
-        } else {
-            return $image
-                ->resize($width, $height, function (Constraint $constraint) {
-                    $constraint->aspectRatio();
-                })
-                ->response();
-        }
+            if ($width && $height) {
+                return $image
+                    ->fit($width, $height, function (Constraint $constraint) {
+                        $constraint->aspectRatio();
+                    });
+            } else {
+                return $image
+                    ->resize($width, $height, function (Constraint $constraint) {
+                        $constraint->aspectRatio();
+                    });
+            }
+        }, 60 * 24, true)->response();
     }
 
+    /**
+     * @return string
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
     private function getDefaultImage()
     {
-        $image = \Image::canvas(800, 800, '#F00');
-
-        return $image;
+        return \Storage::get('defaultImage.png');
     }
 }
