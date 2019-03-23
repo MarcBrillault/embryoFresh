@@ -36,12 +36,12 @@ class MakeCrud extends Command
      */
     public function handle()
     {
-        $argument  = str_singular($this->argument('name'));
-        $plural    = title_case(str_plural($argument));
-        $snakeName = snake_case($argument);
-        $camelName = camel_case($argument);
+        $argument   = str_singular($this->argument('name'));
+        $plural     = title_case(str_plural($argument));
+        $snakeName  = snake_case($argument);
+        $studlyName = studly_case($argument);
 
-        $routeArgument   = sprintf("CRUD::resource('%s', '%sCrudController');", $snakeName, $camelName);
+        $routeArgument   = sprintf("CRUD::resource('%s', '%sCrudController');", $snakeName, $studlyName);
         $sidebarArgument = sprintf(
             "<li><a href='{{ backpack_url('%s') }}'><i class='fa fa-question-circle'></i> <span>%s</span></a></li>",
             $argument,
