@@ -48,7 +48,7 @@ class MakeCrud extends Command
             $plural
         );
 
-        Artisan::call('backpack:crud', ['name' => $snakeName]);
+        Artisan::call('backpack:crud', ['name' => $studlyName]);
         Artisan::call('backpack:base:add-custom-route', ['code' => $routeArgument]);
         Artisan::call('backpack:base:add-sidebar-content', ['code' => $sidebarArgument]);
     }
