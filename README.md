@@ -49,10 +49,10 @@ A tailored version of Laravel + Backpack intended to be a starter for projects.
         ```php
             public function setPathAttribute($value)
             {
-                $this->uploadImage($value, 'path');
+                $this->uploadImage($value, self::ADMIN_PATH_ATTRIBUTE);
             }
         ```
-        The `setXXXAttribute` and the methods second argument should be adapted to your database field's name.
+        The `setXXXAttribute` should be adapted to your database field's name.
 2. Into the admin CRUD file:
     1. For the column view (list page):
         ```php
