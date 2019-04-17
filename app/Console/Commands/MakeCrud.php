@@ -44,11 +44,11 @@ class MakeCrud extends Command
         $routeArgument   = sprintf("CRUD::resource('%s', '%sCrudController');", $snakeName, $studlyName);
         $sidebarArgument = sprintf(
             "<li><a href='{{ backpack_url('%s') }}'><i class='fa fa-question-circle'></i> <span>%s</span></a></li>",
-            $argument,
+            $snakeName,
             $plural
         );
 
-        Artisan::call('backpack:crud', ['name' => $snakeName]);
+        Artisan::call('backpack:crud', ['name' => $studlyName]);
         Artisan::call('backpack:base:add-custom-route', ['code' => $routeArgument]);
         Artisan::call('backpack:base:add-sidebar-content', ['code' => $sidebarArgument]);
     }

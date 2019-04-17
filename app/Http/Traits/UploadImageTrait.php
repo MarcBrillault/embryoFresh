@@ -43,7 +43,7 @@ trait UploadImageTrait
             \Storage::put(self::getImageDir() . '/' . $filename, $image->stream());
             // 3. Save the path to the database
             $this->attributes[$attributeName] = $filename;
-        } elseif (strlen($imageContent <= 255)) {
+        } elseif (strlen($imageContent) <= 255) {
             // If the content is a single string, that means we've got a filename
             $this->attributes[$attributeName] = basename($imageContent);
         }
